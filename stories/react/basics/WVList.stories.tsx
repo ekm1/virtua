@@ -315,6 +315,18 @@ export const IncreasingItems: StoryObj = {
 
     const heights = [20, 40, 80, 77];
 
+    const removeRandomly = () => {
+      const randomIndex = Math.floor(Math.random() * rows.length);
+      const newRows = [];
+
+      for (let i = 0; i < rows.length; i++) {
+        if (i !== randomIndex) {
+          newRows.push(rows[i]);
+        }
+      }
+
+      setRows(newRows);
+    };
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div
@@ -402,9 +414,16 @@ export const IncreasingItems: StoryObj = {
             >
               update
             </button>
+            <button
+              onClick={() => {
+                removeRandomly();
+              }}
+            >
+              Remove Random
+            </button>
           </div>
         </div>
-        <WVList style={{ flex: 1, paddingTop: 30 }} shift={prepend}>
+        <WVList style={{ flex: 1, paddingTop: 30 }} shift={true}>
           {rows.map((d) => (
             <div
               key={d.id}
